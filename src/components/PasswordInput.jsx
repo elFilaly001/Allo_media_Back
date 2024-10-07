@@ -1,42 +1,35 @@
 import React, { useState } from "react";
-import { Button } from "./ui/button"; // Assuming you're using a button component from your UI library
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-export default function PasswordInput() {
+export default function PasswordInput({ id, name, value, onChange }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const checkPasswordStrength = (pass) => {
-    let strength = 0
-    if (pass.length > 8) strength += 20
-    if (pass.match(/[a-z]+/)) strength += 20
-    if (pass.match(/[A-Z]+/)) strength += 20
-    if (pass.match(/[0-9]+/)) strength += 20
-    if (pass.match(/[$@#&!]+/)) strength += 20
-    setPasswordStrength(strength)
-    setUser({...user, password: pass})
-}
-
   return (
-    
-      <div className="relative">
-        <Input
-          type={showPassword ? "text" : "password"}
-          id="password"
-          placeholder="Enter your password"
-          // onChange={(e) => checkPasswordStrength(e.target.value)}
-        />
-        <Button
-          type="button"
-          onClick={togglePasswordVisibility}
-          className="absolute inset-y-0 right-0 px-4"
-        >
-          {showPassword ? <i class="fa-regular fa-eye-slash"></i> : <i class="fa-regular fa-eye"></i>}
-        </Button>
-      </div>
+    <div className="relative">
+      <Input
+        id={id}
+        name={name}
+        type={showPassword ? "text" : "password"}
+        placeholder="Enter your password"
+        value={value} // Controlled input from parent component
+        onChange={onChange} // onChange handler from parent component
+      />
+      <Button
+        type="button"
+        onClick={togglePasswordVisibility}
+        className="absolute inset-y-0 right-0 px-4"
+      >
+        {showPassword ? (
+          <i className="fa-regular fa-eye-slash"></i>
+        ) : (
+          <i className="fa-regular fa-eye"></i>
+        )}
+      </Button>
+    </div>
   );
 }

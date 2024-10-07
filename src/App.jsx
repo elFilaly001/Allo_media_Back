@@ -1,9 +1,11 @@
-import CardWithForm from './components/CardWithForm.jsx'
+import RegisterForm from './components/Auth/RegisterForm.jsx'
+import Routers from './router/router.jsx'
+
 
 
 function App() {
   return (
-    <CardWithForm/>
+    <Routers/>
   )
 }
 
