@@ -17,11 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function RegisterForm() {
   const [data, setData] = useState({
-    username: '',
     email: '',
-    phone: '',
     password: '',
-    confirm_password: ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -43,7 +40,7 @@ export default function RegisterForm() {
         // Delete the confirm_password
         data.role = 'Client';
         console.log(data);
-        const response = await axios.post('http://localhost:3000/api/Auth/Register', {username: data.username ,email : data.email , phone: data.phone , password : data.password , role: data.role});
+        const response = await axios.post('http://localhost:3000/api/Auth/Login', {username: data.username ,email : data.email , phone: data.phone , password : data.password , role: data.role});
         toast.success("Registration successful! Please check your email for verification.");
         } else {
           toast.error("Passwords do not match!");

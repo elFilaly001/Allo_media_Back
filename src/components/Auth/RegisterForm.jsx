@@ -34,28 +34,82 @@ export default function RegisterForm() {
     console.log(data);
   };
 
+
+  const validateForm = () => {
+    // Basic validation rules
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/; // Adjust this regex based on your phone number format
+
+    if (data.username.length < 3) {
+      toast.error("Username must be at least 3 characters long.");
+      return false;
+    }
+
+    if (!emailRegex.test(data.email)) {
+      toast.error("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!phoneRegex.test(data.phone)) {
+      toast.error("Please enter a valid 10-digit phone number.");
+      return false;
+    }
+
+    if (data.password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return false;
+    }
+
+    if (data.password !== data.confirm_password) {
+      toast.error("Passwords do not match!");
+      return false;
+    }
+
+    return true;
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     try {
-      let ps = data.confirm_password
-      setLoading(true); 
+
+      setLoading(true);
+
       if (data.password === data.confirm_password) {
+
         // Delete the confirm_password
         data.role = 'Client';
         console.log(data);
-        const response = await axios.post('http://localhost:3000/api/Auth/Register', {username: data.username ,email : data.email , phone: data.phone , password : data.password , role: data.role});
+        const response = await axios.post('http://localhost:3000/api/Auth/Register', { username: data.username, email: data.email, phone: data.phone, password: data.password, role: data.role });
         toast.success("Registration successful! Please check your email for verification.");
-        } else {
-          toast.error("Passwords do not match!");
-        }
-    } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        toast.error(error.response.data.message); 
+
       } else {
-        toast.error("An error occurred. Please try again.");
+
+        toast.error("Passwords do not match!");
+
       }
+
+    } catch (error) {
+
+      if (error.response && error.response.data && error.response.data.message) {
+
+        toast.error(error.response.data.message);
+
+      } else {
+
+        toast.error("An error occurred. Please try again.");
+
+      }
+
     } finally {
-      setLoading(false); 
+
+      setLoading(false);
+      
     }
   };
 
@@ -114,8 +168,8 @@ export default function RegisterForm() {
                 <PasswordInput
                   id="confirm_password"
                   name="confirm_password"
-                  value={data.confirm_password} 
-                  onChange={handleChange}/>
+                  value={data.confirm_password}
+                  onChange={handleChange} />
               </div>
             </div>
           </CardContent>
