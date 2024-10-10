@@ -14,6 +14,8 @@ import { Label } from "@/components/ui/label";
 import PasswordInput from "../PasswordInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from 'react-router-dom';
+
 
 export default function RegisterForm() {
   const [data, setData] = useState({
@@ -109,7 +111,7 @@ export default function RegisterForm() {
     } finally {
 
       setLoading(false);
-      
+
     }
   };
 
@@ -174,7 +176,9 @@ export default function RegisterForm() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <a href="#"><Button>Back</Button></a>
+            <Link to="/Login">
+              Log in
+            </Link>
             <Button type="submit" disabled={loading}>
               Register
             </Button>
