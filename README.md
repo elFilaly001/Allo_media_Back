@@ -33,8 +33,8 @@ Here are some screenshots of the application to give you an overview of the user
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/elmorjanimohamed9/AlloMedia-Frontend-Auth
-   cd your-project
+   git clone https://github.com/elFilaly001/Allo_media_Front
+   cd Allo_media_Front
    ```
 
 2. **Install dependencies:**
@@ -78,5 +78,5 @@ Here are some screenshots of the application to give you an overview of the user
 - **Formik/React Hook Form**: For form management.
 
 ## Project Management
-This project uses [Jira](https://elmorjanimohamed.atlassian.net/jira/software/projects/AFA/boards/4) for task management and development tracking.
+This project uses [Jira](https://elfilalyabdeljalil.atlassian.net/jira/software/projects/AMF/boards/7) for task management and development tracking.
 
