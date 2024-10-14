@@ -12,7 +12,9 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["./src/*"]
-      }
+      },
+      "esModuleInterop": true,
+      "module": "esnext"
     }
   }
   
