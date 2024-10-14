@@ -29,11 +29,11 @@ export default function OTPForm() {
         stor();
     }, []);   
 
+    
         
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // onsole.log("Value from state:", value);
         console.log("Value from ref:", inputRef.current.value);
         try {
              const response = await axios.post(`http://localhost:3000/api/Auth/OTPcheck?token=${user.token}`, {code:inputRef.current.value});

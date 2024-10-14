@@ -88,8 +88,8 @@ export default function RegisterForm() {
         data.role = 'Client';
         console.log(data);
         const response = await axios.post('http://localhost:3000/api/Auth/Register', { username: data.username, email: data.email, phone: data.phone, password: data.password, role: data.role });
+        // console.log("test ",response);
         toast.success("Registration successful! Please check your email for verification.");
-
       } else {
 
         toast.error("Passwords do not match!");
@@ -97,10 +97,10 @@ export default function RegisterForm() {
       }
 
     } catch (error) {
-
-      if (error.response.data.message) {
-
-        toast.error(error.response.data.message);
+      console.log(error);
+      
+      if (error) {
+        toast.error("test");
 
       } else {
 

@@ -21,8 +21,7 @@ import AuthContextProvider from "../../context/AuthContext";
 
 export default function RegisterForm() {
     const [data, setData] = useState({
-        email: '',
-        password: '',
+        email: ''
     });
 
     const validateForm = () => {
@@ -33,12 +32,6 @@ export default function RegisterForm() {
             toast.error("Please enter a valid email address.");
             return false;
         }
-
-        if (data.password.length < 6) {
-            toast.error("Password must be at least 6 characters long.");
-            return false;
-        }
-
         return true;
     };
     const [loading, setLoading] = useState(false);
@@ -61,10 +54,10 @@ export default function RegisterForm() {
             console.log(data);
             setLoading(true);
             if (validateForm) {
-                const response = await axios.post('http://localhost:3000/api/Auth/Login', data);
+                const response = await axios.post('http://localhost:3000/api/Auth/FogetPassword', data);
                 if (response.status === 200) {
-                // navigate("/OTP")
-                toast.success("Logged in successfully");
+                  console.log(response.data.token);
+                toast.success("Email has been sent successfully, please check your email address");
                 }
             }
         } catch (error) {
